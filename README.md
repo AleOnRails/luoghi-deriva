@@ -9,7 +9,7 @@ Due pagine separate (così lista e mappa restano leggere):
 | [`/suggerisci.html`](./suggerisci.html) | **Suggerisci** — apre issue GitHub (template) |
 | [`/privacy.html`](./privacy.html) | **Privacy** — cookie, analytics, terzi |
 
-Entrambe le guide hanno filtri per livello Caprera e vista **Lista / Mappa** (Leaflet + tile CARTO/OSM).
+Entrambe le guide hanno filtri per livello tecnico e vista **Lista / Mappa** (Leaflet + tile CARTO/OSM).
 
 ### Suggerimenti spot
 

@@ -607,10 +607,24 @@ svg {
   max-width: 42rem;
 }
 
-.legal__updated {
-  margin: 0 0 1.25rem;
-  font-size: 0.85rem;
-  color: var(--muted);
+.legal__list {
+  margin: 0.75rem 0;
+  padding-left: 1.15rem;
+  color: var(--ink);
+  font-size: 0.94rem;
+}
+
+.legal__list li {
+  margin-bottom: 0.65rem;
+  line-height: 1.45;
+}
+
+.legal__list li:last-child {
+  margin-bottom: 0;
+}
+
+.legal__list strong {
+  color: var(--navy);
 }
 
 .legal__block {

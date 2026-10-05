@@ -156,15 +156,15 @@ function updateChrome(regionMeta) {
 
   if (regionMeta.id === "sud") {
     if (docTitle) docTitle.textContent = "Deriva Sud Italia · Guida spot e noleggio";
-    if (eyebrow) eyebrow.textContent = "Metodo Caprera · Campania · Puglia · Calabria · Sicilia";
+    if (eyebrow) eyebrow.textContent = "Campania · Puglia · Calabria · Sicilia";
     if (title) title.textContent = "Guida alla Vela in Deriva nel Sud Italia";
     if (lead) lead.textContent = "Spot marini e centri che noleggiano derive, mappati per livello tecnico.";
     if (tableTitle) tableTitle.textContent = "Tabella riassuntiva — Sud e noleggio";
   } else {
     if (docTitle) docTitle.textContent = "Deriva Nord Italia · Guida spot";
-    if (eyebrow) eyebrow.textContent = "Metodo Caprera · Laghi e Alto Adriatico";
+    if (eyebrow) eyebrow.textContent = "Laghi e Alto Adriatico";
     if (title) title.textContent = "Guida alla Vela in Deriva nel Nord Italia";
-    if (lead) lead.textContent = "Mappatura tecnica degli spot basata sui livelli del metodo Caprera.";
+    if (lead) lead.textContent = "Mappatura tecnica degli spot per livello di difficoltà.";
     if (tableTitle) tableTitle.textContent = "Tabella riassuntiva degli spot";
   }
 
