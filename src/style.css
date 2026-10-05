@@ -683,8 +683,8 @@ svg {
     text-align: left;
     vertical-align: top;
     border-bottom: 1px solid #b8d0d8;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    word-break: normal;
     hyphens: auto;
   }
 
@@ -692,9 +692,11 @@ svg {
     background: var(--navy);
     color: #f0f7f9;
     font-size: 0.74rem;
+    font-weight: 700;
     letter-spacing: 0.02em;
-    position: sticky;
-    top: 0;
+    vertical-align: middle;
+    /* niente sticky: su tabelle lunghe lo sfondo si allunga per tutta l'altezza */
+    position: static;
   }
 
   .spots-table tbody tr:nth-child(even) {
@@ -702,36 +704,24 @@ svg {
   }
 
   /* Nord: 5 colonne */
-  .spots-table:not(.spots-table--regions) th:nth-child(1),
-  .spots-table:not(.spots-table--regions) td:nth-child(1) { width: 24%; }
-  .spots-table:not(.spots-table--regions) th:nth-child(2),
-  .spots-table:not(.spots-table--regions) td:nth-child(2) { width: 9%; }
-  .spots-table:not(.spots-table--regions) th:nth-child(3),
-  .spots-table:not(.spots-table--regions) td:nth-child(3) { width: 16%; }
-  .spots-table:not(.spots-table--regions) th:nth-child(4),
-  .spots-table:not(.spots-table--regions) td:nth-child(4) { width: 24%; }
-  .spots-table:not(.spots-table--regions) th:nth-child(5),
-  .spots-table:not(.spots-table--regions) td:nth-child(5) { width: 27%; }
+  .spots-table:not(.spots-table--regions) col.c1 { width: 24%; }
+  .spots-table:not(.spots-table--regions) col.c2 { width: 9%; }
+  .spots-table:not(.spots-table--regions) col.c3 { width: 16%; }
+  .spots-table:not(.spots-table--regions) col.c4 { width: 24%; }
+  .spots-table:not(.spots-table--regions) col.c5 { width: 27%; }
 
-  /* Sud: 7 colonne (Regione + Noleggio) */
+  /* Sud: 7 colonne */
   .spots-table--regions {
-    min-width: 980px;
+    min-width: 960px;
     font-size: 0.78rem;
   }
-  .spots-table--regions th:nth-child(1),
-  .spots-table--regions td:nth-child(1) { width: 18%; }
-  .spots-table--regions th:nth-child(2),
-  .spots-table--regions td:nth-child(2) { width: 10%; }
-  .spots-table--regions th:nth-child(3),
-  .spots-table--regions td:nth-child(3) { width: 7%; }
-  .spots-table--regions th:nth-child(4),
-  .spots-table--regions td:nth-child(4) { width: 12%; }
-  .spots-table--regions th:nth-child(5),
-  .spots-table--regions td:nth-child(5) { width: 16%; }
-  .spots-table--regions th:nth-child(6),
-  .spots-table--regions td:nth-child(6) { width: 17%; }
-  .spots-table--regions th:nth-child(7),
-  .spots-table--regions td:nth-child(7) { width: 20%; }
+  .spots-table--regions col.c1 { width: 17%; }
+  .spots-table--regions col.c2 { width: 10%; }
+  .spots-table--regions col.c3 { width: 7%; }
+  .spots-table--regions col.c4 { width: 13%; }
+  .spots-table--regions col.c5 { width: 16%; }
+  .spots-table--regions col.c6 { width: 17%; }
+  .spots-table--regions col.c7 { width: 20%; }
 
   .section {
     margin-top: 2rem;

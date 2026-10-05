@@ -59,21 +59,42 @@ function renderCards(spots) {
 function renderTable(spots) {
   const table = document.querySelector(".spots-table");
   const body = document.getElementById("spots-tbody");
-  if (!body) return;
+  if (!body || !table) return;
   const showRegion = spots.some((s) => s.region);
-  table?.classList.toggle("spots-table--regions", showRegion);
+  table.classList.toggle("spots-table--regions", showRegion);
+
+  // colgroup: larghezze stabili allineate tra header e celle
+  let colgroup = table.querySelector("colgroup");
+  if (!colgroup) {
+    colgroup = document.createElement("colgroup");
+    table.prepend(colgroup);
+  }
+  if (showRegion) {
+    colgroup.innerHTML =
+      '<col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"><col class="c6"><col class="c7">';
+  } else {
+    colgroup.innerHTML =
+      '<col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5">';
+  }
 
   const head = document.getElementById("spots-thead");
   if (head) {
-    head.innerHTML = `
-      <tr>
+    head.innerHTML = showRegion
+      ? `<tr>
         <th scope="col">Località</th>
-        ${showRegion ? `<th scope="col">Regione</th>` : ""}
+        <th scope="col">Regione</th>
         <th scope="col">Bacino</th>
         <th scope="col">Livello</th>
         <th scope="col">Vento tipico</th>
         <th scope="col">Deriva ideale</th>
-        ${showRegion ? `<th scope="col">Noleggio / base</th>` : ""}
+        <th scope="col">Noleggio / base</th>
+      </tr>`
+      : `<tr>
+        <th scope="col">Località</th>
+        <th scope="col">Bacino</th>
+        <th scope="col">Livello</th>
+        <th scope="col">Vento tipico</th>
+        <th scope="col">Deriva ideale</th>
       </tr>`;
   }
   body.innerHTML = spots
