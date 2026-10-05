@@ -1,17 +1,17 @@
 /**
  * Cloudflare Web Analytics — privacy-friendly, senza cookie.
- * Token da: Cloudflare Dashboard → Web Analytics → Add a site → JS snippet
- *
- * Locale: crea `.env` con VITE_CF_ANALYTICS_TOKEN=...
- * GitHub: Settings → Secrets → Actions → VITE_CF_ANALYTICS_TOKEN
+ * Il token site è pubblico (finisce nel JS del browser); per override usa
+ * VITE_CF_ANALYTICS_TOKEN in .env o come secret Actions.
  */
+const DEFAULT_TOKEN = "11df4abc21aa4009bf6d8940a0036a77";
+
 export function initAnalytics() {
-  const token = import.meta.env.VITE_CF_ANALYTICS_TOKEN;
+  const token = import.meta.env.VITE_CF_ANALYTICS_TOKEN || DEFAULT_TOKEN;
   if (!token || typeof document === "undefined") return;
   if (document.querySelector("script[data-cf-beacon]")) return;
 
   const script = document.createElement("script");
-  script.defer = true;
+  script.type = "module";
   script.src = "https://static.cloudflareinsights.com/beacon.min.js";
   script.setAttribute(
     "data-cf-beacon",
