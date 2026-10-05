@@ -6,6 +6,7 @@ Due pagine separate (così lista e mappa restano leggere):
 |-----|-----------|
 | [`/`](./index.html) / `index.html` | **Nord** — laghi e Alto Adriatico / Liguria |
 | [`/sud.html`](./sud.html) | **Sud** — Campania, Puglia, Calabria, Sicilia + noleggio |
+| [`/livelli.html`](./livelli.html) | **Livelli** — criteri Base / Intermedio / Medio-Avanzato / Avanzato |
 | [`/suggerisci.html`](./suggerisci.html) | **Suggerisci** — apre issue GitHub (template) |
 | [`/privacy.html`](./privacy.html) | **Privacy** — cookie, analytics, terzi |
 
@@ -29,6 +30,8 @@ npm run dev
 
 - Nord: [http://127.0.0.1:43127/](http://127.0.0.1:43127/)
 - Sud: [http://127.0.0.1:43127/sud.html](http://127.0.0.1:43127/sud.html)
+- Livelli: [http://127.0.0.1:43127/livelli.html](http://127.0.0.1:43127/livelli.html)
+- Privacy: [http://127.0.0.1:43127/privacy.html](http://127.0.0.1:43127/privacy.html)
 
 ## GitHub Pages
 

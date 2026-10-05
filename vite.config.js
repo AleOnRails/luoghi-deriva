@@ -21,6 +21,7 @@ export default defineConfig({
         main: resolve(__dirname, "index.html"),
         sud: resolve(__dirname, "sud.html"),
         privacy: resolve(__dirname, "privacy.html"),
+        livelli: resolve(__dirname, "livelli.html"),
         suggerisci: resolve(__dirname, "suggerisci.html"),
       },
     },
