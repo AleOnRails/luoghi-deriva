@@ -267,12 +267,23 @@ export function initApp(initial) {
     if (!mapEl) return;
     destroyMap();
 
-    map = L.map(mapEl, { scrollWheelZoom: true, zoomControl: true });
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      maxZoom: 18,
-    }).addTo(map);
+    map = L.map(mapEl, {
+      scrollWheelZoom: true,
+      zoomControl: true,
+      // evita riquadro grigio se il container era nascosto
+      fadeAnimation: false,
+    });
+
+    // CARTO (dati OSM): più affidabile di tile.openstreetmap.org su Pages
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+      {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
+        subdomains: "abcd",
+        maxZoom: 20,
+      }
+    ).addTo(map);
 
     markerLayer = L.layerGroup().addTo(map);
 
@@ -314,6 +325,39 @@ export function initApp(initial) {
     map.fitBounds(L.latLngBounds(bounds), { padding: [36, 36], maxZoom: 11 });
   }
 
+  function showMapPane() {
+    if (listView) {
+      listView.classList.add("is-hidden");
+      listView.hidden = true;
+    }
+    if (mapView) {
+      mapView.classList.remove("is-hidden");
+      mapView.hidden = false;
+    }
+
+    // due frame: layout completo prima di misurare il container
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (!map) initMap();
+        else {
+          map.invalidateSize(true);
+          applyMapFilter(currentFilter);
+        }
+      });
+    });
+  }
+
+  function showListPane() {
+    if (mapView) {
+      mapView.classList.add("is-hidden");
+      mapView.hidden = true;
+    }
+    if (listView) {
+      listView.classList.remove("is-hidden");
+      listView.hidden = false;
+    }
+  }
+
   function setView(view) {
     currentView = view;
     document.querySelectorAll(".view-btn").forEach((btn) => {
@@ -322,20 +366,8 @@ export function initApp(initial) {
       btn.setAttribute("aria-pressed", active ? "true" : "false");
     });
 
-    const showMap = view === "map";
-    listView?.classList.toggle("is-hidden", showMap);
-    mapView?.classList.toggle("is-hidden", !showMap);
-    if (listView) listView.hidden = showMap;
-    if (mapView) mapView.hidden = !showMap;
-
-    if (showMap) {
-      // mostra prima il container, poi inizializza (Leaflet misura la size)
-      requestAnimationFrame(() => {
-        initMap();
-        map?.invalidateSize();
-        applyMapFilter(currentFilter);
-      });
-    }
+    if (view === "map") showMapPane();
+    else showListPane();
   }
 
   function setFilter(level) {
