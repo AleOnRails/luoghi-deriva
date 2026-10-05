@@ -1,0 +1,14 @@
+{
+  "name": "guida-vela-deriva-nord-italia",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 43127",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 43127"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}
