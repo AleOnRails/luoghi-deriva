@@ -671,14 +671,15 @@ svg {
 
   .spots-table {
     width: 100%;
+    min-width: 720px;
     border-collapse: collapse;
     table-layout: fixed;
-    font-size: 0.86rem;
+    font-size: 0.82rem;
   }
 
   .spots-table th,
   .spots-table td {
-    padding: 0.7rem 0.75rem;
+    padding: 0.65rem 0.6rem;
     text-align: left;
     vertical-align: top;
     border-bottom: 1px solid #b8d0d8;
@@ -690,7 +691,7 @@ svg {
   .spots-table thead th {
     background: var(--navy);
     color: #f0f7f9;
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     letter-spacing: 0.02em;
     position: sticky;
     top: 0;
@@ -700,16 +701,37 @@ svg {
     background: var(--foam);
   }
 
-  .spots-table th:nth-child(1),
-  .spots-table td:nth-child(1) { width: 24%; }
-  .spots-table th:nth-child(2),
-  .spots-table td:nth-child(2) { width: 9%; }
-  .spots-table th:nth-child(3),
-  .spots-table td:nth-child(3) { width: 16%; }
-  .spots-table th:nth-child(4),
-  .spots-table td:nth-child(4) { width: 24%; }
-  .spots-table th:nth-child(5),
-  .spots-table td:nth-child(5) { width: 27%; }
+  /* Nord: 5 colonne */
+  .spots-table:not(.spots-table--regions) th:nth-child(1),
+  .spots-table:not(.spots-table--regions) td:nth-child(1) { width: 24%; }
+  .spots-table:not(.spots-table--regions) th:nth-child(2),
+  .spots-table:not(.spots-table--regions) td:nth-child(2) { width: 9%; }
+  .spots-table:not(.spots-table--regions) th:nth-child(3),
+  .spots-table:not(.spots-table--regions) td:nth-child(3) { width: 16%; }
+  .spots-table:not(.spots-table--regions) th:nth-child(4),
+  .spots-table:not(.spots-table--regions) td:nth-child(4) { width: 24%; }
+  .spots-table:not(.spots-table--regions) th:nth-child(5),
+  .spots-table:not(.spots-table--regions) td:nth-child(5) { width: 27%; }
+
+  /* Sud: 7 colonne (Regione + Noleggio) */
+  .spots-table--regions {
+    min-width: 980px;
+    font-size: 0.78rem;
+  }
+  .spots-table--regions th:nth-child(1),
+  .spots-table--regions td:nth-child(1) { width: 18%; }
+  .spots-table--regions th:nth-child(2),
+  .spots-table--regions td:nth-child(2) { width: 10%; }
+  .spots-table--regions th:nth-child(3),
+  .spots-table--regions td:nth-child(3) { width: 7%; }
+  .spots-table--regions th:nth-child(4),
+  .spots-table--regions td:nth-child(4) { width: 12%; }
+  .spots-table--regions th:nth-child(5),
+  .spots-table--regions td:nth-child(5) { width: 16%; }
+  .spots-table--regions th:nth-child(6),
+  .spots-table--regions td:nth-child(6) { width: 17%; }
+  .spots-table--regions th:nth-child(7),
+  .spots-table--regions td:nth-child(7) { width: 20%; }
 
   .section {
     margin-top: 2rem;

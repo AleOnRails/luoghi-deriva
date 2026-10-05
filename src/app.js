@@ -57,9 +57,12 @@ function renderCards(spots) {
 }
 
 function renderTable(spots) {
+  const table = document.querySelector(".spots-table");
   const body = document.getElementById("spots-tbody");
   if (!body) return;
   const showRegion = spots.some((s) => s.region);
+  table?.classList.toggle("spots-table--regions", showRegion);
+
   const head = document.getElementById("spots-thead");
   if (head) {
     head.innerHTML = `
@@ -69,21 +72,33 @@ function renderTable(spots) {
         <th scope="col">Bacino</th>
         <th scope="col">Livello</th>
         <th scope="col">Vento tipico</th>
-        <th scope="col">Deriva / noleggio</th>
+        <th scope="col">Deriva ideale</th>
+        ${showRegion ? `<th scope="col">Noleggio / base</th>` : ""}
       </tr>`;
   }
   body.innerHTML = spots
-    .map(
-      (spot) => `
+    .map((spot) => {
+      if (showRegion) {
+        return `
       <tr data-level="${spot.level}">
         <td>${escapeHtml(spot.name)}</td>
-        ${showRegion ? `<td>${escapeHtml(spot.region)}</td>` : ""}
+        <td>${escapeHtml(spot.region)}</td>
         <td class="bacino">${escapeHtml(spot.basin)}</td>
         <td><span class="badge badge--${spot.level}">${escapeHtml(spot.levelLabel)}</span></td>
         <td>${escapeHtml(spot.wind)}</td>
-        <td>${escapeHtml(spot.boats)}${spot.rental ? `<br><span class="table-rental">${escapeHtml(spot.rental)}</span>` : ""}</td>
-      </tr>`
-    )
+        <td>${escapeHtml(spot.boats)}</td>
+        <td>${escapeHtml(spot.rental || "—")}</td>
+      </tr>`;
+      }
+      return `
+      <tr data-level="${spot.level}">
+        <td>${escapeHtml(spot.name)}</td>
+        <td class="bacino">${escapeHtml(spot.basin)}</td>
+        <td><span class="badge badge--${spot.level}">${escapeHtml(spot.levelLabel)}</span></td>
+        <td>${escapeHtml(spot.wind)}</td>
+        <td>${escapeHtml(spot.boats)}</td>
+      </tr>`;
+    })
     .join("");
 }
 
