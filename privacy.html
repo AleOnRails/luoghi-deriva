@@ -17,8 +17,8 @@
   <header class="hero hero--compact">
     <div class="hero__glow" aria-hidden="true"></div>
     <nav class="region-nav" aria-label="Navigazione">
-      <a class="region-nav__link" href="./index.html">Nord</a>
-      <a class="region-nav__link" href="./sud.html">Sud</a>
+      <a class="region-nav__link" data-page="index.html" href="./index.html">Nord</a>
+      <a class="region-nav__link" data-page="sud.html" href="./sud.html">Sud</a>
     </nav>
     <p class="hero__eyebrow">Trasparenza</p>
     <h1>Privacy e cookie</h1>
@@ -129,14 +129,16 @@
     </section>
 
     <p class="legal__back">
-      <a href="./index.html">← Torna al Nord</a>
+      <a data-page="index.html" href="./index.html">← Torna al Nord</a>
       ·
-      <a href="./sud.html">Vai al Sud</a>
+      <a data-page="sud.html" href="./sud.html">Vai al Sud</a>
     </p>
   </main>
 
   <footer class="site-footer">
-    <p>Luoghi Deriva · <a href="./privacy.html" aria-current="page">Privacy</a></p>
+    <p>Luoghi Deriva · <a data-page="privacy.html" href="./privacy.html" aria-current="page">Privacy</a></p>
   </footer>
+
+  <script type="module" src="./src/site-nav.js"></script>
 </body>
 </html>

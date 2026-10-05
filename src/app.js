@@ -2,6 +2,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { initAnalytics } from "./analytics.js";
 import { LEVEL_COLORS, LEVEL_META } from "./levels.js";
+import { pageUrl, wirePageLinks } from "./links.js";
 
 const LEVEL_ORDER = ["base", "inter", "trans", "adv"];
 
@@ -13,13 +14,8 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
-function baseUrl() {
-  const base = import.meta.env.BASE_URL || "/";
-  return base.endsWith("/") ? base : `${base}/`;
-}
-
 function regionHref(page) {
-  return new URL(page, window.location.origin + baseUrl()).pathname;
+  return pageUrl(page);
 }
 
 function wireRegionNav(activeId) {
@@ -32,6 +28,7 @@ function wireRegionNav(activeId) {
     if (active) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   });
+  wirePageLinks();
 }
 
 function renderCards(spots) {
