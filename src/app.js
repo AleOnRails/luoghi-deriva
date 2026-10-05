@@ -387,12 +387,7 @@ export function initApp(initial) {
     renderTable(spots);
     renderDetails(spots);
     setFilter(currentFilter);
-    if (currentView === "map") {
-      requestAnimationFrame(() => {
-        initMap();
-        map?.invalidateSize();
-      });
-    }
+    if (currentView === "map") showMapPane();
   }
 
   async function switchRegion(id, { push = true } = {}) {
