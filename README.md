@@ -13,6 +13,23 @@ npm run dev
 
 Apri [http://127.0.0.1:43127](http://127.0.0.1:43127).
 
+Build di produzione:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Pubblicare su GitHub Pages
+
+Il workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) pubblica automaticamente su Pages a ogni push su `main`.
+
+Dopo aver creato il repository su GitHub:
+
+1. **Settings → Pages → Build and deployment → Source**: seleziona **GitHub Actions**
+2. Fai push su `main` (o rilancia il workflow da Actions)
+3. Il sito sarà su `https://<utente>.github.io/<nome-repo>/`
+
 ## File documento
 
 | File | Descrizione |
