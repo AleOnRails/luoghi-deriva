@@ -1,48 +1,37 @@
-# Guida alla Vela in Deriva nel Nord Italia
+# Guida alla Vela in Deriva — Nord e Sud Italia
 
-Mappatura tecnica degli spot di vela in deriva del Nord Italia, organizzata secondo i livelli del metodo Caprera.
+Due pagine separate (così lista e mappa restano leggere):
 
-## Web app (mobile-friendly)
+| URL | Contenuto |
+|-----|-----------|
+| [`/`](./index.html) / `index.html` | **Nord** — laghi e Alto Adriatico / Liguria |
+| [`/sud.html`](./sud.html) | **Sud** — Campania, Puglia, Calabria, Sicilia + noleggio |
 
-Interfaccia responsive con **vista Lista** e **vista Mappa** (Leaflet + OpenStreetMap, senza API key). I filtri per livello funzionano in entrambe le modalità.
+Entrambe hanno filtri per livello Caprera e vista **Lista / Mappa** (Leaflet + OpenStreetMap, senza API key).
+
+## Avvio locale
 
 ```bash
-nvm use   # legge .nvmrc (Node 22+)
+nvm use
 npm install
 npm run dev
 ```
 
-Di default apre [http://127.0.0.1:43127](http://127.0.0.1:43127). Se la porta è già occupata, Vite ne sceglie un’altra e la stampa in terminale.
+- Nord: [http://127.0.0.1:43127/](http://127.0.0.1:43127/)
+- Sud: [http://127.0.0.1:43127/sud.html](http://127.0.0.1:43127/sud.html)
 
-Build di produzione:
+## GitHub Pages
 
-```bash
-npm run build
-npm run preview
-```
+Dopo il push su `main` (con Source = **GitHub Actions**):
 
-## Pubblicare su GitHub Pages
+- `https://aleonrails.github.io/luoghi-deriva/`
+- `https://aleonrails.github.io/luoghi-deriva/sud.html`
 
-Il workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) pubblica automaticamente su Pages a ogni push su `main`.
-
-Dopo aver creato il repository su GitHub:
-
-1. **Settings → Pages → Build and deployment → Source**: seleziona **GitHub Actions**
-2. Fai push su `main` (o rilancia il workflow da Actions)
-3. Il sito sarà su `https://<utente>.github.io/<nome-repo>/`
-
-## File documento
+## Documenti
 
 | File | Descrizione |
 |------|-------------|
-| [`index.html`](index.html) | Guida web responsive |
-| [`guida-vela-deriva-nord-italia.md`](guida-vela-deriva-nord-italia.md) | Guida in Markdown |
-| [`guida-vela-deriva-nord-italia.pdf`](guida-vela-deriva-nord-italia.pdf) | PDF A4 orizzontale |
-| [`generate_pdf.py`](generate_pdf.py) | Script generazione PDF |
-
-## Generare il PDF
-
-```bash
-pip install -r requirements.txt
-python3 generate_pdf.py
-```
+| [`guida-vela-deriva-nord-italia.md`](guida-vela-deriva-nord-italia.md) | Markdown Nord |
+| [`guida-vela-deriva-sud-italia.md`](guida-vela-deriva-sud-italia.md) | Markdown Sud |
+| [`guida-vela-deriva-nord-italia.pdf`](guida-vela-deriva-nord-italia.pdf) | PDF Nord |
+| [`generate_pdf.py`](generate_pdf.py) | Generatore PDF Nord |

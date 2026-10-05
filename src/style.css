@@ -128,6 +128,65 @@ svg {
   font-size: clamp(0.92rem, 2.8vw, 1.05rem);
 }
 
+.region-nav {
+  position: relative;
+  display: inline-flex;
+  gap: 0.35rem;
+  margin: 0 0 0.85rem;
+  padding: 0.2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 999px;
+}
+
+.region-nav__link {
+  color: #c5dde4;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.region-nav__link.is-active {
+  background: var(--sand);
+  color: var(--navy);
+}
+
+.region-note {
+  margin: 0.85rem 0 0;
+  padding: 0.85rem 1rem;
+  background: rgba(201, 168, 76, 0.12);
+  border-left: 4px solid var(--sand);
+  border-radius: 0 10px 10px 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.rental {
+  margin: 0.55rem 0 0;
+  font-size: 0.9rem;
+  color: var(--navy-mid);
+}
+
+.table-rental {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.site-footer a {
+  color: var(--sea);
+  font-style: normal;
+  font-weight: 600;
+}
+
 .wave-bar {
   height: 6px;
   background: repeating-linear-gradient(
