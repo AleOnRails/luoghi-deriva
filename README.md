@@ -6,7 +6,13 @@ Due pagine separate (così lista e mappa restano leggere):
 |-----|-----------|
 | [`/`](./index.html) / `index.html` | **Nord** — laghi e Alto Adriatico / Liguria |
 | [`/sud.html`](./sud.html) | **Sud** — Campania, Puglia, Calabria, Sicilia + noleggio |
+| [`/suggerisci.html`](./suggerisci.html) | **Suggerisci** — form → issue GitHub |
 | [`/privacy.html`](./privacy.html) | **Privacy** — cookie, analytics, terzi |
+
+### Suggerimenti spot → GitHub Issues
+
+Il form apre `issues/new` con titolo/body precompilati (serve login GitHub).  
+Crea una volta l’etichetta `suggerimento-spot` nel repo se non esiste.
 
 Entrambe hanno filtri per livello Caprera e vista **Lista / Mappa** (Leaflet + OpenStreetMap, senza API key).
 

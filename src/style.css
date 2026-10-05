@@ -682,6 +682,96 @@ svg {
   color: var(--sea);
 }
 
+.suggest-form h2 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--navy);
+}
+
+.suggest-field {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.92rem;
+  color: var(--navy-mid);
+  font-weight: 600;
+}
+
+.suggest-field em {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.suggest-field input,
+.suggest-field select,
+.suggest-field textarea {
+  font: inherit;
+  font-weight: 400;
+  color: var(--ink);
+  padding: 0.65rem 0.75rem;
+  border: 1.5px solid rgba(19, 64, 88, 0.2);
+  border-radius: 10px;
+  background: #fff;
+  width: 100%;
+  min-height: 44px;
+}
+
+.suggest-field textarea {
+  min-height: 8rem;
+  resize: vertical;
+  line-height: 1.45;
+}
+
+.suggest-field input:focus,
+.suggest-field select:focus,
+.suggest-field textarea:focus {
+  outline: 2px solid var(--sea-light);
+  outline-offset: 1px;
+  border-color: var(--sea);
+}
+
+.suggest-error {
+  margin: 0 0 0.85rem;
+  padding: 0.65rem 0.75rem;
+  background: var(--adv-bg);
+  color: var(--adv);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.suggest-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.suggest-submit {
+  appearance: none;
+  border: 0;
+  background: var(--navy);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 0.7rem 1.15rem;
+  min-height: 44px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.suggest-submit:hover {
+  background: var(--navy-mid);
+}
+
+.suggest-secondary {
+  font-weight: 600;
+  text-decoration: none;
+}
+
 /* —— Animations —— */
 @keyframes drift {
   from { transform: translate(0, 0); }

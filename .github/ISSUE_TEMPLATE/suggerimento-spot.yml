@@ -1,0 +1,50 @@
+name: Suggerimento spot
+description: Proponi un nuovo luogo per la guida deriva
+title: "[Spot] "
+labels: ["suggerimento-spot"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Grazie! Compila i campi: verrà usata per valutare l’inserimento in Nord o Sud.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Nord Italia
+        - Sud Italia
+        - Non sicuro / altro
+    validations:
+      required: true
+  - type: input
+    id: localita
+    attributes:
+      label: Località / spot
+      placeholder: es. Porto Cesareo, Lago di Candia…
+    validations:
+      required: true
+  - type: dropdown
+    id: livello
+    attributes:
+      label: Livello Caprera stimato
+      options:
+        - Base / Iniziazione
+        - Intermedio
+        - Medio-Avanzato
+        - Avanzato
+        - Non so
+    validations:
+      required: true
+  - type: textarea
+    id: perche
+    attributes:
+      label: Perché aggiungerlo
+      description: Vento tipico, derive, scuole/noleggio, link utili…
+    validations:
+      required: true
+  - type: input
+    id: contatto
+    attributes:
+      label: Contatto (opzionale)
+      placeholder: email o @handle, solo se vuoi un seguito
