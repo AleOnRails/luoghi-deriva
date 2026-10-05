@@ -14,21 +14,17 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
-function regionHref(page) {
-  return pageUrl(page);
-}
-
 function wireRegionNav(activeId) {
   document.querySelectorAll("[data-region]").forEach((link) => {
     const id = link.dataset.region;
     const page = id === "sud" ? "sud.html" : "index.html";
-    link.setAttribute("href", regionHref(page));
+    // href assoluto corretto per GitHub Pages; click = navigazione browser
+    link.setAttribute("href", pageUrl(page));
     const active = id === activeId;
     link.classList.toggle("is-active", active);
     if (active) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   });
-  wirePageLinks();
 }
 
 function renderCards(spots) {
@@ -387,23 +383,6 @@ export function initApp(initial) {
     if (currentView === "map") showMapPane();
   }
 
-  async function switchRegion(id, { push = true } = {}) {
-    if (id === regionMeta.id) return;
-    const mod =
-      id === "sud"
-        ? await import("./spots-sud.js")
-        : await import("./spots-nord.js");
-    spots = mod.spots;
-    regionMeta = mod.regionMeta;
-    destroyMap();
-    renderAll();
-    if (push) {
-      const page = id === "sud" ? "sud.html" : "index.html";
-      history.pushState({ region: id }, "", regionHref(page));
-    }
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
   document.querySelectorAll(".filter").forEach((button) => {
     button.addEventListener("click", () => setFilter(button.dataset.filter));
   });
@@ -412,18 +391,9 @@ export function initApp(initial) {
     button.addEventListener("click", () => setView(button.dataset.view));
   });
 
-  document.querySelectorAll("[data-region]").forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      switchRegion(link.dataset.region);
-    });
-  });
-
-  window.addEventListener("popstate", () => {
-    const path = window.location.pathname;
-    const id = path.endsWith("sud.html") || path.endsWith("/sud") ? "sud" : "nord";
-    switchRegion(id, { push: false });
-  });
+  // Nord/Sud/Privacy: navigazione normale (niente preventDefault / SPA)
+  wireRegionNav(regionMeta.id);
+  wirePageLinks();
 
   renderAll();
   initAnalytics();
