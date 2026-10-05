@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0b2a3d" />
-  <meta name="description" content="Spot di vela in deriva nel Nord Italia, per livelli Caprera — lista e mappa." />
-  <title>Deriva Nord Italia · Guida spot</title>
+  <meta name="description" content="Spot di vela in deriva nel Nord e Sud Italia, per livelli Caprera — lista e mappa." />
+  <title id="doc-title">Deriva Nord Italia · Guida spot</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -17,12 +17,12 @@
   <header class="hero">
     <div class="hero__glow" aria-hidden="true"></div>
     <nav class="region-nav" aria-label="Area geografica">
-      <a class="region-nav__link is-active" href="./index.html" aria-current="page">Nord</a>
-      <a class="region-nav__link" href="./sud.html">Sud</a>
+      <a class="region-nav__link is-active" data-region="nord" href="./index.html" aria-current="page">Nord</a>
+      <a class="region-nav__link" data-region="sud" href="./sud.html">Sud</a>
     </nav>
-    <p class="hero__eyebrow">Metodo Caprera · Laghi e Alto Adriatico</p>
-    <h1>Guida alla Vela in Deriva nel Nord Italia</h1>
-    <p class="hero__lead">Mappatura tecnica degli spot basata sui livelli del metodo Caprera.</p>
+    <p class="hero__eyebrow" id="hero-eyebrow">Metodo Caprera · Laghi e Alto Adriatico</p>
+    <h1 id="hero-title">Guida alla Vela in Deriva nel Nord Italia</h1>
+    <p class="hero__lead" id="hero-lead">Mappatura tecnica degli spot basata sui livelli del metodo Caprera.</p>
   </header>
 
   <div class="wave-bar" aria-hidden="true"></div>
@@ -49,7 +49,7 @@
     <p id="region-note" class="region-note" hidden></p>
 
     <div id="map-view" class="map-view is-hidden" hidden>
-      <div id="map" class="map-canvas" role="application" aria-label="Mappa spot Nord Italia"></div>
+      <div id="map" class="map-canvas" role="application" aria-label="Mappa degli spot"></div>
       <ul class="map-legend" aria-label="Legenda livelli">
         <li><span class="level-dot level-dot--base"></span> Base</li>
         <li><span class="level-dot level-dot--inter"></span> Intermedio</li>
@@ -64,7 +64,7 @@
         <p class="section__note">Su mobile gli spot appaiono come schede; su schermi ampi vedi la tabella completa.</p>
         <div class="spot-cards" id="spot-cards" aria-live="polite"></div>
         <p class="empty-state" id="empty-state" hidden>Nessuno spot per questo livello.</p>
-        <div class="table-scroll" role="region" aria-label="Tabella spot Nord" tabindex="0">
+        <div class="table-scroll" role="region" aria-label="Tabella spot" tabindex="0">
           <table class="spots-table">
             <thead id="spots-thead"></thead>
             <tbody id="spots-tbody"></tbody>
@@ -76,7 +76,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>Nord Italia — livelli ispirati al metodo Caprera. Mappa © OpenStreetMap. · <a href="./sud.html">Vai al Sud</a></p>
+    <p>Livelli ispirati al metodo Caprera. Mappa © OpenStreetMap.</p>
   </footer>
 
   <script type="module" src="./src/main-nord.js"></script>

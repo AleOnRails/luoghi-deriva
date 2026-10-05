@@ -12,6 +12,27 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
+function baseUrl() {
+  const base = import.meta.env.BASE_URL || "/";
+  return base.endsWith("/") ? base : `${base}/`;
+}
+
+function regionHref(page) {
+  return new URL(page, window.location.origin + baseUrl()).pathname;
+}
+
+function wireRegionNav(activeId) {
+  document.querySelectorAll("[data-region]").forEach((link) => {
+    const id = link.dataset.region;
+    const page = id === "sud" ? "sud.html" : "index.html";
+    link.setAttribute("href", regionHref(page));
+    const active = id === activeId;
+    link.classList.toggle("is-active", active);
+    if (active) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  });
+}
+
 function renderCards(spots) {
   const root = document.getElementById("spot-cards");
   if (!root) return;
@@ -95,6 +116,42 @@ function renderDetails(spots) {
   }).join("");
 }
 
+function updateChrome(regionMeta) {
+  const title = document.getElementById("hero-title");
+  const lead = document.getElementById("hero-lead");
+  const eyebrow = document.getElementById("hero-eyebrow");
+  const tableTitle = document.getElementById("tabella-title");
+  const noteEl = document.getElementById("region-note");
+  const docTitle = document.getElementById("doc-title");
+
+  if (regionMeta.id === "sud") {
+    if (docTitle) docTitle.textContent = "Deriva Sud Italia · Guida spot e noleggio";
+    if (eyebrow) eyebrow.textContent = "Metodo Caprera · Campania · Puglia · Calabria · Sicilia";
+    if (title) title.textContent = "Guida alla Vela in Deriva nel Sud Italia";
+    if (lead) lead.textContent = "Spot marini e centri che noleggiano derive, mappati per livello tecnico.";
+    if (tableTitle) tableTitle.textContent = "Tabella riassuntiva — Sud e noleggio";
+  } else {
+    if (docTitle) docTitle.textContent = "Deriva Nord Italia · Guida spot";
+    if (eyebrow) eyebrow.textContent = "Metodo Caprera · Laghi e Alto Adriatico";
+    if (title) title.textContent = "Guida alla Vela in Deriva nel Nord Italia";
+    if (lead) lead.textContent = "Mappatura tecnica degli spot basata sui livelli del metodo Caprera.";
+    if (tableTitle) tableTitle.textContent = "Tabella riassuntiva degli spot";
+  }
+
+  if (noteEl) {
+    if (regionMeta.note) {
+      noteEl.textContent = regionMeta.note;
+      noteEl.hidden = false;
+    } else {
+      noteEl.textContent = "";
+      noteEl.hidden = true;
+    }
+  }
+
+  wireRegionNav(regionMeta.id);
+  document.body.dataset.region = regionMeta.id;
+}
+
 function levelIcon(level) {
   const color = LEVEL_COLORS[level] || "#134058";
   return L.divIcon({
@@ -119,31 +176,30 @@ function popupHtml(spot) {
 }
 
 /**
- * @param {{ spots: Array, regionMeta: { id: string, label: string, mapCenter: number[], mapZoom: number, note?: string } }} config
+ * @param {{ spots: Array, regionMeta: object }} initial
  */
-export function initApp({ spots, regionMeta }) {
-  renderCards(spots);
-  renderTable(spots);
-  renderDetails(spots);
-
-  const noteEl = document.getElementById("region-note");
-  if (noteEl && regionMeta.note) {
-    noteEl.textContent = regionMeta.note;
-    noteEl.hidden = false;
-  }
-
-  const filters = document.querySelectorAll(".filter");
-  const viewButtons = document.querySelectorAll("[data-view]");
-  const emptyState = document.getElementById("empty-state");
-  const listView = document.getElementById("list-view");
-  const mapView = document.getElementById("map-view");
-  const mapEl = document.getElementById("map");
-
+export function initApp(initial) {
+  let spots = initial.spots;
+  let regionMeta = initial.regionMeta;
   let currentFilter = "all";
   let currentView = "list";
   let map = null;
   let markerLayer = null;
   const markersById = new Map();
+
+  const listView = document.getElementById("list-view");
+  const mapView = document.getElementById("map-view");
+  const mapEl = document.getElementById("map");
+  const emptyState = document.getElementById("empty-state");
+
+  function destroyMap() {
+    if (map) {
+      map.remove();
+      map = null;
+      markerLayer = null;
+      markersById.clear();
+    }
+  }
 
   function applyListFilter(level) {
     const cards = document.querySelectorAll(".spot-card");
@@ -171,7 +227,8 @@ export function initApp({ spots, regionMeta }) {
   }
 
   function initMap() {
-    if (!mapEl || map) return;
+    if (!mapEl) return;
+    destroyMap();
 
     map = L.map(mapEl, { scrollWheelZoom: true, zoomControl: true });
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -222,7 +279,7 @@ export function initApp({ spots, regionMeta }) {
 
   function setView(view) {
     currentView = view;
-    viewButtons.forEach((btn) => {
+    document.querySelectorAll(".view-btn").forEach((btn) => {
       const active = btn.dataset.view === view;
       btn.classList.toggle("is-active", active);
       btn.setAttribute("aria-pressed", active ? "true" : "false");
@@ -235,8 +292,9 @@ export function initApp({ spots, regionMeta }) {
     if (mapView) mapView.hidden = !showMap;
 
     if (showMap) {
-      initMap();
+      // mostra prima il container, poi inizializza (Leaflet misura la size)
       requestAnimationFrame(() => {
+        initMap();
         map?.invalidateSize();
         applyMapFilter(currentFilter);
       });
@@ -245,7 +303,7 @@ export function initApp({ spots, regionMeta }) {
 
   function setFilter(level) {
     currentFilter = level;
-    filters.forEach((other) => {
+    document.querySelectorAll(".filter").forEach((other) => {
       const active = other.dataset.filter === level;
       other.classList.toggle("is-active", active);
       other.setAttribute("aria-pressed", active ? "true" : "false");
@@ -254,12 +312,57 @@ export function initApp({ spots, regionMeta }) {
     if (currentView === "map") applyMapFilter(level);
   }
 
-  filters.forEach((button) => {
+  function renderAll() {
+    updateChrome(regionMeta);
+    renderCards(spots);
+    renderTable(spots);
+    renderDetails(spots);
+    setFilter(currentFilter);
+    if (currentView === "map") {
+      requestAnimationFrame(() => {
+        initMap();
+        map?.invalidateSize();
+      });
+    }
+  }
+
+  async function switchRegion(id, { push = true } = {}) {
+    if (id === regionMeta.id) return;
+    const mod =
+      id === "sud"
+        ? await import("./spots-sud.js")
+        : await import("./spots-nord.js");
+    spots = mod.spots;
+    regionMeta = mod.regionMeta;
+    destroyMap();
+    renderAll();
+    if (push) {
+      const page = id === "sud" ? "sud.html" : "index.html";
+      history.pushState({ region: id }, "", regionHref(page));
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  document.querySelectorAll(".filter").forEach((button) => {
     button.addEventListener("click", () => setFilter(button.dataset.filter));
   });
-  viewButtons.forEach((button) => {
+
+  document.querySelectorAll(".view-btn").forEach((button) => {
     button.addEventListener("click", () => setView(button.dataset.view));
   });
 
-  applyListFilter("all");
+  document.querySelectorAll("[data-region]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      switchRegion(link.dataset.region);
+    });
+  });
+
+  window.addEventListener("popstate", () => {
+    const path = window.location.pathname;
+    const id = path.endsWith("sud.html") || path.endsWith("/sud") ? "sud" : "nord";
+    switchRegion(id, { push: false });
+  });
+
+  renderAll();
 }
