@@ -741,6 +741,20 @@ svg {
   font-weight: 600;
 }
 
+.suggest-success {
+  margin: 0 0 0.85rem;
+  padding: 0.65rem 0.75rem;
+  background: var(--base-bg);
+  color: var(--base);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.suggest-success a {
+  color: inherit;
+}
+
 .suggest-actions {
   display: flex;
   flex-wrap: wrap;

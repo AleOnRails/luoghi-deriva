@@ -9,10 +9,31 @@ Due pagine separate (così lista e mappa restano leggere):
 | [`/suggerisci.html`](./suggerisci.html) | **Suggerisci** — form → issue GitHub |
 | [`/privacy.html`](./privacy.html) | **Privacy** — cookie, analytics, terzi |
 
-### Suggerimenti spot → GitHub Issues
+### Suggerimenti spot → issue a tuo nome
 
-Il form apre `issues/new` con titolo/body precompilati (serve login GitHub).  
-Crea una volta l’etichetta `suggerimento-spot` nel repo se non esiste.
+Il form invia i dati a un **Cloudflare Worker** che crea l’issue con il tuo PAT
+(il token non è mai nel frontend).
+
+1. Crea un PAT fine-grained su GitHub con permesso **Issues: Read and write** solo su `AleOnRails/luoghi-deriva`
+2. Crea l’etichetta `suggerimento-spot` nel repo se manca
+3. Dalla cartella `worker/`:
+
+```bash
+cd worker
+npx wrangler login
+npx wrangler deploy
+npx wrangler secret put GITHUB_TOKEN
+# incolla il PAT
+```
+
+4. Copia l’URL del worker (es. `https://luoghi-deriva-suggest.<tuo-subdomain>.workers.dev`)
+5. Se diverso da quello in `src/suggest.js`, imposta in build:
+   - secret Actions `VITE_SUGGEST_API_URL` = URL del worker
+   - oppure aggiorna il default in `src/suggest.js`
+6. Aggiorna `ALLOWED_ORIGINS` in `worker/suggest-issue.js` se serve
+7. Push + deploy Pages
+
+Fino a quando il worker non è online, il form mostrerà un errore in invio.
 
 Entrambe hanno filtri per livello Caprera e vista **Lista / Mappa** (Leaflet + OpenStreetMap, senza API key).
 

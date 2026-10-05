@@ -1,37 +1,35 @@
 import { pageUrl, wirePageLinks } from "./links.js";
 
-const REPO_NEW_ISSUE =
-  "https://github.com/AleOnRails/luoghi-deriva/issues/new";
+/** URL del Cloudflare Worker (dopo il deploy). Override: VITE_SUGGEST_API_URL */
+const SUGGEST_API =
+  import.meta.env.VITE_SUGGEST_API_URL ||
+  "https://luoghi-deriva-suggest.alessandra-cannata.workers.dev";
 
 const form = document.getElementById("suggest-form");
 const errorEl = document.getElementById("suggest-error");
+const successEl = document.getElementById("suggest-success");
+const submitBtn = form?.querySelector('button[type="submit"]');
 
 wirePageLinks();
 
 function showError(message) {
-  if (!errorEl) return;
-  errorEl.hidden = !message;
-  errorEl.textContent = message || "";
-}
-
-function buildIssueBody(data) {
-  const lines = [
-    "### Suggerimento spot (dal sito)",
-    "",
-    `| Campo | Valore |`,
-    `| --- | --- |`,
-    `| **Area** | ${data.area} |`,
-    `| **Località** | ${data.localita} |`,
-    `| **Livello stimato** | ${data.livello} |`,
-  ];
-  if (data.contatto) {
-    lines.push(`| **Contatto** | ${data.contatto} |`);
+  if (errorEl) {
+    errorEl.hidden = !message;
+    errorEl.textContent = message || "";
   }
-  lines.push("", "### Perché aggiungerlo", "", data.perche, "");
-  return lines.join("\n");
+  if (successEl) successEl.hidden = true;
 }
 
-form?.addEventListener("submit", (event) => {
+function showSuccess(url, number) {
+  if (errorEl) errorEl.hidden = true;
+  if (!successEl) return;
+  successEl.hidden = false;
+  successEl.innerHTML = url
+    ? `Grazie! Issue <a href="${url}" target="_blank" rel="noopener">#${number}</a> creata.`
+    : "Grazie! Suggerimento inviato.";
+}
+
+form?.addEventListener("submit", async (event) => {
   event.preventDefault();
   showError("");
 
@@ -49,14 +47,34 @@ form?.addEventListener("submit", (event) => {
     return;
   }
 
-  const title = `[Spot] ${data.localita} (${data.area})`;
-  const url = `${REPO_NEW_ISSUE}?${new URLSearchParams({
-    title,
-    body: buildIssueBody(data),
-    labels: "suggerimento-spot",
-  }).toString()}`;
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Invio…";
+  }
 
-  window.location.assign(url);
+  try {
+    const res = await fetch(SUGGEST_API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(payload.error || payload.detail || "Invio non riuscito");
+    }
+    form.reset();
+    showSuccess(payload.url, payload.number);
+  } catch (err) {
+    showError(
+      err?.message ||
+        "Non riesco a contattare il servizio. Riprova più tardi."
+    );
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Invia suggerimento";
+    }
+  }
 });
 
 document.querySelectorAll("a[data-page='suggerisci.html']").forEach((a) => {

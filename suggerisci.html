@@ -31,14 +31,10 @@
     <section class="legal__block">
       <h2>Come funziona</h2>
       <p>
-        Compila il modulo e premi <strong>Apri issue su GitHub</strong>.
-        Verrai portato su GitHub con titolo e testo già pronti: basta confermare
-        (serve un account GitHub). Ogni invio diventa una issue nel repository
-        del progetto, così possiamo discuterla e magari inserirla in guida.
-      </p>
-      <p class="legal__note">
-        Non c’è un server dietro al sito: senza passare da GitHub non possiamo
-        creare issue in automatico in modo sicuro.
+        Compila il modulo e premi <strong>Invia suggerimento</strong>.
+        La proposta diventa automaticamente una <strong>issue GitHub</strong>
+        sul repository del progetto (a nome del maintainer), così possiamo
+        valutarla e magari inserirla in guida.
       </p>
     </section>
 
@@ -83,9 +79,10 @@
       </label>
 
       <p id="suggest-error" class="suggest-error" hidden></p>
+      <p id="suggest-success" class="suggest-success" hidden></p>
 
       <div class="suggest-actions">
-        <button type="submit" class="suggest-submit">Apri issue su GitHub</button>
+        <button type="submit" class="suggest-submit">Invia suggerimento</button>
         <a class="suggest-secondary" data-page="privacy.html" href="./privacy.html">Privacy</a>
       </div>
     </form>
