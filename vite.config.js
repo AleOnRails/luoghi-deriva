@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite'
 
-// base del project site GitHub Pages (repo luoghi-deriva)
+// In produzione (GitHub Pages project site) serve il prefisso del repo.
+// In locale resta '/' così npm run dev apre subito la root.
 export default defineConfig({
-  base: '/luoghi-deriva/',
+  base: process.env.NODE_ENV === "production" ? "/luoghi-deriva/" : "/",
   server: {
     host: '127.0.0.1',
     port: 43127,
