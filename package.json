@@ -8,6 +8,9 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1 --port 43127"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "vite": "^6.3.5"
   }

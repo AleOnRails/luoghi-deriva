@@ -6,12 +6,13 @@ export default defineConfig({
   server: {
     host: '127.0.0.1',
     port: 43127,
-    strictPort: true,
+    // se la porta è occupata, Vite ne sceglie un'altra libera
+    strictPort: false,
   },
   preview: {
     host: '127.0.0.1',
     port: 43127,
-    strictPort: true,
+    strictPort: false,
   },
   build: {
     outDir: 'dist',

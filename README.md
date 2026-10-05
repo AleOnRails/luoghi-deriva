@@ -7,11 +7,12 @@ Mappatura tecnica degli spot di vela in deriva del Nord Italia, organizzata seco
 Interfaccia responsive: su smartphone gli spot sono schede filtrabili; su desktop compare la tabella completa.
 
 ```bash
+nvm use   # legge .nvmrc (Node 22+)
 npm install
 npm run dev
 ```
 
-Apri [http://127.0.0.1:43127](http://127.0.0.1:43127).
+Di default apre [http://127.0.0.1:43127](http://127.0.0.1:43127). Se la porta è già occupata, Vite ne sceglie un’altra e la stampa in terminale.
 
 Build di produzione:
 
