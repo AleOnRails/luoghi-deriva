@@ -775,6 +775,10 @@ svg {
   min-height: 44px;
   border-radius: 999px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .suggest-submit:hover {

@@ -1,5 +1,0 @@
-name = "luoghi-deriva-suggest"
-main = "suggest-issue.js"
-compatibility_date = "2026-10-05"
-
-# Dopo il deploy: wrangler secret put GITHUB_TOKEN

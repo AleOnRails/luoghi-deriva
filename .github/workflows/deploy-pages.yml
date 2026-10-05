@@ -33,7 +33,6 @@ jobs:
       - name: Build
         env:
           VITE_CF_ANALYTICS_TOKEN: ${{ secrets.VITE_CF_ANALYTICS_TOKEN }}
-          VITE_SUGGEST_API_URL: ${{ secrets.VITE_SUGGEST_API_URL }}
         run: npm run build
 
       # Richiede Settings → Pages → Source = GitHub Actions

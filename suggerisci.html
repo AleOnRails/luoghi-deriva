@@ -22,7 +22,7 @@
     </nav>
     <p class="hero__eyebrow">Community</p>
     <h1>Suggerisci uno spot</h1>
-    <p class="hero__lead">Propuni un luogo da aggiungere: si apre una issue su GitHub già compilata.</p>
+    <p class="hero__lead">Hai un luogo da proporre? Aprilo come issue su GitHub in un click.</p>
   </header>
 
   <div class="wave-bar" aria-hidden="true"></div>
@@ -31,61 +31,18 @@
     <section class="legal__block">
       <h2>Come funziona</h2>
       <p>
-        Compila il modulo e premi <strong>Invia suggerimento</strong>.
-        La proposta diventa automaticamente una <strong>issue GitHub</strong>
-        sul repository del progetto (a nome del maintainer), così possiamo
-        valutarla e magari inserirla in guida.
+        Il pulsante apre una <strong>nuova issue</strong> sul repository del progetto,
+        con il template “Suggerimento spot” già pronto. Compila i campi su GitHub
+        e invia (serve un account GitHub).
       </p>
-    </section>
-
-    <form id="suggest-form" class="suggest-form legal__block" novalidate>
-      <h2>Il tuo suggerimento</h2>
-
-      <label class="suggest-field">
-        <span>Area</span>
-        <select name="area" required>
-          <option value="">Seleziona…</option>
-          <option value="Nord Italia">Nord Italia</option>
-          <option value="Sud Italia">Sud Italia</option>
-          <option value="Non sicuro / altro">Non sicuro / altro</option>
-        </select>
-      </label>
-
-      <label class="suggest-field">
-        <span>Località / spot</span>
-        <input type="text" name="localita" required maxlength="120" placeholder="es. Porto Cesareo, Lago di Candia…" />
-      </label>
-
-      <label class="suggest-field">
-        <span>Livello Caprera stimato</span>
-        <select name="livello" required>
-          <option value="">Seleziona…</option>
-          <option>Base / Iniziazione</option>
-          <option>Intermedio</option>
-          <option>Medio-Avanzato</option>
-          <option>Avanzato</option>
-          <option>Non so</option>
-        </select>
-      </label>
-
-      <label class="suggest-field">
-        <span>Perché aggiungerlo</span>
-        <textarea name="perche" required maxlength="2000" rows="6" placeholder="Vento tipico, derive, scuole o noleggio, link utili…"></textarea>
-      </label>
-
-      <label class="suggest-field">
-        <span>Contatto <em>(opzionale)</em></span>
-        <input type="text" name="contatto" maxlength="120" placeholder="email o @handle" />
-      </label>
-
-      <p id="suggest-error" class="suggest-error" hidden></p>
-      <p id="suggest-success" class="suggest-success" hidden></p>
-
-      <div class="suggest-actions">
-        <button type="submit" class="suggest-submit">Invia suggerimento</button>
-        <a class="suggest-secondary" data-page="privacy.html" href="./privacy.html">Privacy</a>
+      <div class="suggest-actions" style="margin-top: 1rem">
+        <a
+          class="suggest-submit"
+          href="https://github.com/AleOnRails/luoghi-deriva/issues/new?template=suggerimento-spot.yml"
+          rel="noopener noreferrer"
+        >Suggerisci su GitHub</a>
       </div>
-    </form>
+    </section>
 
     <p class="legal__back">
       <a data-page="index.html" href="./index.html">← Nord</a>
@@ -103,6 +60,6 @@
     </p>
   </footer>
 
-  <script type="module" src="./src/suggest.js"></script>
+  <script type="module" src="./src/site-nav.js"></script>
 </body>
 </html>
