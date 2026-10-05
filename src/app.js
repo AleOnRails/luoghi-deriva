@@ -1,5 +1,6 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { initAnalytics } from "./analytics.js";
 import { LEVEL_COLORS, LEVEL_META } from "./levels.js";
 
 const LEVEL_ORDER = ["base", "inter", "trans", "adv"];
@@ -401,4 +402,5 @@ export function initApp(initial) {
   });
 
   renderAll();
+  initAnalytics();
 }

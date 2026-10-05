@@ -27,6 +27,26 @@ Dopo il push su `main` (con Source = **GitHub Actions**):
 - `https://aleonrails.github.io/luoghi-deriva/`
 - `https://aleonrails.github.io/luoghi-deriva/sud.html`
 
+## Analytics (Cloudflare)
+
+Il sito usa [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/) (senza cookie).
+
+1. Su Cloudflare: **Web Analytics → Add a site** → copia il **token** dallo snippet JS
+2. Su GitHub (`AleOnRails/luoghi-deriva`): **Settings → Secrets and variables → Actions → New repository secret**
+   - Name: `VITE_CF_ANALYTICS_TOKEN`
+   - Value: il token
+3. Rifai deploy (push su `main` o **Actions → Deploy GitHub Pages → Run workflow**)
+
+**Escludere le tue visite:** nel pannello Cloudflare Web Analytics del sito, apri **Manage site** e usa **Exclude my visits** / il bookmarklet ufficiale (imposta un cookie locale sul tuo browser).
+
+In locale (opzionale):
+
+```bash
+cp .env.example .env
+# inserisci VITE_CF_ANALYTICS_TOKEN=...
+npm run dev
+```
+
 ## Documenti
 
 | File | Descrizione |
