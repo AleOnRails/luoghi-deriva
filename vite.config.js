@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 
-// base relativo: funziona su GitHub Pages (project site) e in locale
+// base del project site GitHub Pages (repo luoghi-deriva)
 export default defineConfig({
-  base: './',
+  base: '/luoghi-deriva/',
   server: {
     host: '127.0.0.1',
     port: 43127,

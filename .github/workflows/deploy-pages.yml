@@ -33,6 +33,7 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Richiede Settings → Pages → Source = GitHub Actions
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
