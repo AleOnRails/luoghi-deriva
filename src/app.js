@@ -267,16 +267,13 @@ export function initApp(initial) {
       fadeAnimation: false,
     });
 
-    // CARTO (dati OSM): più affidabile di tile.openstreetmap.org su Pages
-    L.tileLayer(
-      "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-      {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
-        subdomains: "abcd",
-        maxZoom: 20,
-      }
-    ).addTo(map);
+    // OSM France HOT: raster gratuiti senza API key (CARTO Voyager ora richiede key)
+    L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · <a href="https://www.openstreetmap.fr/" target="_blank" rel="noopener">OSM France</a>',
+      subdomains: "abc",
+      maxZoom: 19,
+    }).addTo(map);
 
     markerLayer = L.layerGroup().addTo(map);
 
@@ -328,7 +325,7 @@ export function initApp(initial) {
       mapView.hidden = false;
     }
 
-    // due frame: layout completo prima di misurare il container
+    // layout completo prima di misurare il container (hidden → visible)
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         if (!map) initMap();
@@ -336,6 +333,10 @@ export function initApp(initial) {
           map.invalidateSize(true);
           applyMapFilter(currentFilter);
         }
+        // secondo passaggio: dopo paint delle tile / resize
+        window.setTimeout(() => {
+          if (map) map.invalidateSize(true);
+        }, 80);
       });
     });
   }

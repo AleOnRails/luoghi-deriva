@@ -384,6 +384,12 @@ svg {
 
 .leaflet-container {
   font: inherit;
+  background: #dce8ec;
+}
+
+/* Leaflet 1.9.4: plus-lighter rende le tile invisibili su sfondi chiari */
+.leaflet-container img.leaflet-tile {
+  mix-blend-mode: normal !important;
 }
 
 .leaflet-popup-content-wrapper {
