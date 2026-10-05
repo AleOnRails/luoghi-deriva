@@ -767,22 +767,31 @@ svg {
   appearance: none;
   border: 0;
   background: var(--navy);
-  color: #fff;
+  color: #f5fafb !important;
   font: inherit;
   font-weight: 700;
   font-size: 0.92rem;
-  padding: 0.7rem 1.15rem;
+  padding: 0.75rem 1.25rem;
   min-height: 44px;
   border-radius: 999px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
+  text-decoration: none !important;
+  box-shadow: 0 6px 16px rgba(11, 42, 61, 0.22);
+  transition: background 0.15s ease, transform 0.15s ease;
 }
 
 .suggest-submit:hover {
-  background: var(--navy-mid);
+  background: var(--sea);
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+.suggest-submit:focus-visible {
+  outline: 3px solid var(--sand);
+  outline-offset: 3px;
 }
 
 .suggest-secondary {
