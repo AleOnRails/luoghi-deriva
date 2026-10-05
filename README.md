@@ -37,7 +37,13 @@ Il sito usa [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/
    - Value: il token
 3. Rifai deploy (push su `main` o **Actions → Deploy GitHub Pages → Run workflow**)
 
-**Escludere le tue visite:** nel pannello Cloudflare Web Analytics del sito, apri **Manage site** e usa **Exclude my visits** / il bookmarklet ufficiale (imposta un cookie locale sul tuo browser).
+**Escludere le tue visite** (Cloudflare non ha un toggle nativo): apri il sito e in console esegui una volta:
+
+```js
+localStorage.setItem('cf-analytics-optout', 'true')
+```
+
+Ripeti per ogni browser/dispositivo. Per riattivare: `localStorage.removeItem('cf-analytics-optout')`.
 
 In locale (opzionale):
 
