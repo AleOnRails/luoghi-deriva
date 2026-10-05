@@ -200,6 +200,138 @@ svg {
 .filter--trans.is-active { background: var(--trans); border-color: var(--trans); }
 .filter--adv.is-active { background: var(--adv); border-color: var(--adv); }
 
+/* —— View toolbar —— */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 1rem;
+  margin-top: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.view-toggle {
+  display: inline-flex;
+  padding: 0.2rem;
+  background: var(--surface);
+  border: 1.5px solid rgba(19, 64, 88, 0.16);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+
+.view-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--navy-mid);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  min-height: 40px;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.view-btn.is-active {
+  background: var(--navy);
+  color: #fff;
+}
+
+.toolbar__note {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* —— Map —— */
+.map-view {
+  margin-top: 0.85rem;
+}
+
+.map-canvas {
+  width: 100%;
+  height: min(68vh, 560px);
+  min-height: 320px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(26, 107, 124, 0.16);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  z-index: 1;
+  background: var(--foam);
+}
+
+.map-legend {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.map-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.spot-marker {
+  background: transparent;
+  border: 0;
+}
+
+.spot-marker__dot {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 5px;
+  border-radius: 50%;
+  background: var(--marker, var(--sea));
+  border: 2.5px solid #fff;
+  box-shadow: 0 2px 8px rgba(11, 42, 61, 0.35);
+}
+
+.map-popup {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.map-popup__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  color: var(--navy);
+  margin-bottom: 0.35rem;
+}
+
+.map-popup .badge {
+  margin-bottom: 0.4rem;
+}
+
+.map-popup p {
+  margin: 0.35rem 0 0;
+}
+
+.map-popup__boats {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.leaflet-container {
+  font: inherit;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
 /* —— Sections —— */
 .section {
   margin-top: 1.6rem;
@@ -240,8 +372,10 @@ svg {
 
 .section.is-hidden,
 .spot-card.is-hidden,
-.spots-table tbody tr.is-hidden {
-  display: none;
+.spots-table tbody tr.is-hidden,
+#list-view.is-hidden,
+#map-view.is-hidden {
+  display: none !important;
 }
 
 .level-dot {

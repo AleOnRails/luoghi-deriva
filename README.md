@@ -4,7 +4,7 @@ Mappatura tecnica degli spot di vela in deriva del Nord Italia, organizzata seco
 
 ## Web app (mobile-friendly)
 
-Interfaccia responsive: su smartphone gli spot sono schede filtrabili; su desktop compare la tabella completa.
+Interfaccia responsive con **vista Lista** e **vista Mappa** (Leaflet + OpenStreetMap, senza API key). I filtri per livello funzionano in entrambe le modalità.
 
 ```bash
 nvm use   # legge .nvmrc (Node 22+)

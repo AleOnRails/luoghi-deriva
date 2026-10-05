@@ -33,7 +33,26 @@
     </div>
   </nav>
 
+  <div class="toolbar wrap">
+    <div class="view-toggle" role="group" aria-label="Modalità visualizzazione">
+      <button type="button" class="view-btn is-active" data-view="list" aria-pressed="true">Lista</button>
+      <button type="button" class="view-btn" data-view="map" aria-pressed="false">Mappa</button>
+    </div>
+    <p class="toolbar__note">Mappa libera con OpenStreetMap · senza API key</p>
+  </div>
+
   <main id="contenuto" class="wrap">
+    <div id="map-view" class="map-view is-hidden" hidden>
+      <div id="map" class="map-canvas" role="application" aria-label="Mappa degli spot di vela"></div>
+      <ul class="map-legend" aria-label="Legenda livelli">
+        <li><span class="level-dot level-dot--base"></span> Base</li>
+        <li><span class="level-dot level-dot--inter"></span> Intermedio</li>
+        <li><span class="level-dot level-dot--trans"></span> Medio-Avanzato</li>
+        <li><span class="level-dot level-dot--adv"></span> Avanzato</li>
+      </ul>
+    </div>
+
+    <div id="list-view">
     <section class="section" aria-labelledby="tabella-title">
       <h2 id="tabella-title">Tabella riassuntiva degli spot</h2>
       <p class="section__note">Su mobile gli spot appaiono come schede; su schermi ampi vedi la tabella completa.</p>
@@ -409,10 +428,11 @@
         <p>La Liguria d'inverno e in primavera regala giornate di <strong>Tramontana</strong> dura che scende dalle montagne o di <strong>Scirocco</strong> con onda lunga. Navigare in deriva qui richiede doti di marineria d'alto livello per gestire il mare formato e le uscite/rientri dalle scogliere.</p>
       </article>
     </section>
+    </div>
   </main>
 
   <footer class="site-footer">
-    <p>Guida tecnica agli spot di vela in deriva del Nord Italia — livelli ispirati al metodo Caprera.</p>
+    <p>Guida tecnica agli spot di vela in deriva del Nord Italia — livelli ispirati al metodo Caprera. Mappa © OpenStreetMap.</p>
   </footer>
 
   <script type="module" src="./src/main.js"></script>
