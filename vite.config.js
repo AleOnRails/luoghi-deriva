@@ -20,6 +20,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         sud: resolve(__dirname, "sud.html"),
+        privacy: resolve(__dirname, "privacy.html"),
       },
     },
   },

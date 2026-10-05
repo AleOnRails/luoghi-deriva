@@ -593,6 +593,95 @@ svg {
   font-style: italic;
 }
 
+.hero--compact {
+  padding-bottom: 1.1rem;
+}
+
+.hero--compact h1 {
+  max-width: 16ch;
+}
+
+.legal {
+  padding-top: 1.25rem;
+  padding-bottom: 2rem;
+  max-width: 42rem;
+}
+
+.legal__updated {
+  margin: 0 0 1.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.legal__block {
+  margin: 0 0 1.35rem;
+  padding: 1rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid rgba(26, 107, 124, 0.12);
+  border-radius: var(--radius);
+}
+
+.legal__block h2 {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--navy);
+  border: 0;
+  padding: 0;
+}
+
+.legal__block p {
+  margin: 0 0 0.65rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.legal__block p:last-child {
+  margin-bottom: 0;
+}
+
+.legal__block code {
+  font-size: 0.86em;
+  background: var(--foam);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.legal__code {
+  margin: 0.5rem 0 0.75rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--navy);
+  color: #e8f4f6;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.legal__note {
+  color: var(--muted) !important;
+  font-size: 0.88rem !important;
+}
+
+.legal__back {
+  margin: 1.5rem 0 0;
+  font-size: 0.95rem;
+}
+
+.legal__back a {
+  color: var(--sea);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.legal__back a:hover {
+  text-decoration: underline;
+}
+
+.legal a {
+  color: var(--sea);
+}
+
 /* —— Animations —— */
 @keyframes drift {
   from { transform: translate(0, 0); }

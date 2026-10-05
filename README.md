@@ -6,6 +6,7 @@ Due pagine separate (così lista e mappa restano leggere):
 |-----|-----------|
 | [`/`](./index.html) / `index.html` | **Nord** — laghi e Alto Adriatico / Liguria |
 | [`/sud.html`](./sud.html) | **Sud** — Campania, Puglia, Calabria, Sicilia + noleggio |
+| [`/privacy.html`](./privacy.html) | **Privacy** — cookie, analytics, terzi |
 
 Entrambe hanno filtri per livello Caprera e vista **Lista / Mappa** (Leaflet + OpenStreetMap, senza API key).
 
